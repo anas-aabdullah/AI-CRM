@@ -5,6 +5,12 @@ import {
   IconTelegram,
 } from '../auth/SocialProviderIcons'
 
+const SHARE_ICONS = [
+  { label: 'Google', Icon: IconGoogle },
+  { label: 'LinkedIn', Icon: IconLinkedIn },
+  { label: 'Telegram', Icon: IconTelegram },
+] as const
+
 type Props = {
   campaignTitle: string
   referralUrl: string
@@ -29,58 +35,65 @@ export function CampaignReferralSection({
   return (
     <section
       id="campaign"
-      className="scroll-mt-24 border-b border-line bg-white py-10 sm:py-12"
+      className="scroll-mt-24 border-b border-line bg-white py-8 sm:py-9"
     >
       <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-[120px]">
-        <h2 className="text-xl font-bold text-brand sm:text-2xl">
+        <h2 className="text-[34px] font-bold leading-tight text-brand max-sm:text-3xl">
           {campaignTitle}
         </h2>
 
-        <div className="mt-6 flex max-w-3xl flex-col gap-3 sm:flex-row sm:items-stretch">
-          <label className="sr-only" htmlFor="referral-link">
-            Referral link
-          </label>
-          <input
-            id="referral-link"
-            readOnly
-            value={referralUrl}
-            className="h-12 min-w-0 flex-1 rounded-xl border border-line bg-footer px-4 text-sm text-brand"
-          />
-          <button
-            type="button"
-            onClick={copyLink}
-            className="h-12 shrink-0 rounded-xl bg-brand px-6 text-sm font-semibold text-white transition hover:opacity-90"
-          >
-            {copied ? 'Copied' : 'Copy'}
-          </button>
-        </div>
-
-        <p className="mt-3 text-sm text-brand/70">
-          Share this link — clicks and signups count toward your leaderboard
-          position.
-        </p>
-
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <span className="w-full text-sm font-medium text-brand sm:w-auto">
-            Share on
-          </span>
-          <div className="flex flex-wrap gap-3">
-            {(
-              [
-                { label: 'Google', Icon: IconGoogle },
-                { label: 'LinkedIn', Icon: IconLinkedIn },
-                { label: 'Telegram', Icon: IconTelegram },
-              ] as const
-            ).map(({ label, Icon }) => (
+        <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="min-w-0">
+            <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-brand/55">
+              Copy invite link
+            </p>
+            <div className="flex min-w-0 items-center gap-2 rounded-md border border-line px-3 py-2">
+              <label className="sr-only" htmlFor="referral-link">
+                Referral link
+              </label>
+              <input
+                id="referral-link"
+                readOnly
+                value={referralUrl}
+                className="min-w-0 flex-1 bg-transparent text-xs text-brand outline-none"
+              />
               <button
-                key={label}
                 type="button"
-                aria-label={`Share on ${label}`}
-                className="inline-flex size-12 items-center justify-center rounded-full border border-line bg-white text-brand shadow-sm transition hover:border-brand/30 hover:bg-brand/4"
+                onClick={copyLink}
+                className="inline-flex size-7 items-center justify-center rounded-full border border-line text-brand transition hover:border-brand hover:bg-brand hover:text-white"
+                aria-label="Copy invite link"
               >
-                <Icon className="size-6" />
+                <svg viewBox="0 0 24 24" className="size-3.5" fill="none" aria-hidden>
+                  <path
+                    d="M9 9h10v10H9zM5 5h10v2H7v8H5z"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
-            ))}
+            </div>
+            {copied ? (
+              <p className="mt-1 text-xs font-medium text-green-700">Copied</p>
+            ) : null}
+          </div>
+          <div>
+            <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-brand/55">
+              Share to social media
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              {SHARE_ICONS.map(({ label, Icon }) => (
+                <button
+                  key={label}
+                  type="button"
+                  aria-label={`Share on ${label}`}
+                  className="inline-flex size-7 items-center justify-center rounded-full border border-line bg-white text-brand shadow-sm transition hover:border-brand hover:bg-brand hover:text-white"
+                >
+                  <Icon className="size-3.5" />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

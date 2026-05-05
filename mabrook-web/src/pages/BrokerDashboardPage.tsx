@@ -33,7 +33,7 @@ export function BrokerDashboardPage() {
 
   return (
     <div className={PAGE_WRAP}>
-      <DashboardHeader />
+      <DashboardHeader userName="Jack Morris" userEmail="jack.morris@mabrook.app" />
       <main className="flex-1">
         <DashboardHero />
         <MyCampaignsSection

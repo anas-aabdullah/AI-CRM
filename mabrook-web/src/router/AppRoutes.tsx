@@ -9,7 +9,11 @@ import { RecoverPasswordPage } from '../pages/RecoverPasswordPage'
 import { ResetPasswordPage } from '../pages/ResetPasswordPage'
 import { AccountSettingsLayout } from '../components/account/AccountSettingsLayout'
 import { BrokerDashboardPage } from '../pages/BrokerDashboardPage'
+import { CampaignsPage } from '../pages/CampaignsPage'
+import { CampaignDetailsPage } from '../pages/CampaignDetailsPage'
+import { CampaignReferralProfilePage } from '../pages/CampaignReferralProfilePage'
 import { ChangePasswordPage } from '../pages/ChangePasswordPage'
+import { CreateCampaignPage } from '../pages/CreateCampaignPage'
 import { MyProfilePage } from '../pages/MyProfilePage'
 import { PlaceholderPage } from '../pages/PlaceholderPage'
 import { SignupPage } from '../pages/SignupPage'
@@ -23,6 +27,13 @@ export function AppRoutes() {
     <Routes>
       <Route path={paths.home} element={<HomePage />} />
       <Route path={paths.dashboard} element={<BrokerDashboardPage />} />
+      <Route path={paths.campaigns} element={<CampaignsPage />} />
+      <Route path={paths.campaignsCreate} element={<CreateCampaignPage />} />
+      <Route path="/campaigns/:campaignId" element={<CampaignDetailsPage />} />
+      <Route
+        path="/campaigns/:campaignId/referrals/:referralId"
+        element={<CampaignReferralProfilePage />}
+      />
       <Route path={paths.settings} element={<AccountSettingsLayout />}>
         <Route index element={<MyProfilePage />} />
         <Route

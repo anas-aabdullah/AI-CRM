@@ -3,6 +3,11 @@ export const paths = {
   home: '/',
   /** Broker / logged-in app shell (protect with auth in production). */
   dashboard: '/dashboard',
+  campaigns: '/campaigns',
+  campaignsCreate: '/campaigns/create',
+  campaignDetail: (campaignId: string) => `/campaigns/${campaignId}`,
+  campaignReferralDetail: (campaignId: string, referralId: string) =>
+    `/campaigns/${campaignId}/referrals/${referralId}`,
   /** Account settings (profile, password) — same shell as broker app. */
   settings: '/settings',
   settingsChangePassword: '/settings/change-password',
